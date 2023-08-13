@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_api_app/screens/home.dart';
+import 'package:news_api_app/screens/apple/apple_news.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-      
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
