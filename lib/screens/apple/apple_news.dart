@@ -19,15 +19,16 @@ class _HomeState extends State<Home> {
   void initState() {
     getData();
 
-    // TODO: implement initState
     super.initState();
   }
 
   void getData() async {
     final articles = await NewsProvider.getArticle(ApiService.endPointUrl);
-    setState(() {
-      this.articles = articles;
-    });
+    setState(
+      () {
+        this.articles = articles;
+      },
+    );
   }
 
   @override
@@ -45,37 +46,37 @@ class _HomeState extends State<Home> {
           Spaces.h30,
           Expanded(
             child: Card(
-                child: articles == null
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            ...List.generate(
-                                articles!.length,
-                                (index) => ListTile(
-                                      leading: CachedNetworkImage(
-                                        imageUrl: articles?[index].urlToImage ??
-                                            'not available',
-                                        placeholder: (context, url) =>
-                                            const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                      ),
-                                      title: Text(
-                                        articles?[index].title ??
-                                            'not available',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      subtitle: Text(
-                                          articles?[index].description ??
-                                              'not available'),
-                                    ))
-                          ],
-                        ),
-                      )),
+              child: articles == null
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          ...List.generate(
+                            articles!.length,
+                            (index) => ListTile(
+                              leading: CachedNetworkImage(
+                                imageUrl: articles?[index].urlToImage ??
+                                    'not available',
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
+                              title: Text(
+                                articles?[index].title ?? 'not available',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(articles?[index].description ??
+                                  'not available'),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+            ),
           ),
         ],
       ),

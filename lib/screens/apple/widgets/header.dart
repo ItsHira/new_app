@@ -39,7 +39,9 @@ class Header extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  TeslaNews()),
+                MaterialPageRoute(
+                  builder: (context) => const TeslaNews(),
+                ),
               );
             },
             color: Colors.yellow,
@@ -57,7 +59,9 @@ class Header extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const BusinessNews()),
+                MaterialPageRoute(
+                  builder: (context) => const BusinessNews(),
+                ),
               );
             },
             color: Colors.blue,
@@ -75,7 +79,9 @@ class Header extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const TechNews()),
+                MaterialPageRoute(
+                  builder: (context) => const TechNews(),
+                ),
               );
             },
             color: Colors.black,
@@ -93,7 +99,9 @@ class Header extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const WallNews()),
+                MaterialPageRoute(
+                  builder: (context) => const WallNews(),
+                ),
               );
             },
             color: Colors.red,
