@@ -11,9 +11,13 @@ class NewsProvider {
 
       if (res.statusCode == 200) {
         final articles = res.data as Map<String, dynamic>;
-        var data = NewsApiModel.fromJson(articles);
+        print('error');
+        final data = NewsApiModel.fromMap(articles);
+        print('error');
+        final newslist = data.articles;
+        print('error');
 
-        return data.articles!;
+        return newslist;
       } else {
         throw Exception('Failed to fetch articals');
       }

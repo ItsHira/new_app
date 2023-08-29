@@ -2,29 +2,25 @@ import 'dart:convert';
 
 class Articles {
   final Source? source;
-  final String author;
+
   final String title;
-  final String description;
+  final String? description;
   final String? url;
   final String? urlToImage;
   final String publishedAt;
   final String content;
   Articles({
     this.source,
-    required this.author,
     required this.title,
-    required this.description,
+    this.description,
     this.url,
     this.urlToImage,
     required this.publishedAt,
     required this.content,
   });
 
-
-
   Articles copyWith({
     Source? source,
-    String? author,
     String? title,
     String? description,
     String? url,
@@ -34,7 +30,6 @@ class Articles {
   }) {
     return Articles(
       source: source ?? this.source,
-      author: author ?? this.author,
       title: title ?? this.title,
       description: description ?? this.description,
       url: url ?? this.url,
@@ -47,7 +42,6 @@ class Articles {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'source': source?.toMap(),
-      'author': author,
       'title': title,
       'description': description,
       'url': url,
@@ -59,12 +53,14 @@ class Articles {
 
   factory Articles.fromMap(Map<String, dynamic> map) {
     return Articles(
-      source: map['source'] != null ? Source.fromMap(map['source'] as Map<String,dynamic>) : null,
-      author: map['author'] as String,
+      source: map['source'] != null
+          ? Source.fromMap(map['source'] as Map<String, dynamic>)
+          : null,
       title: map['title'] as String,
-      description: map['description'] as String,
+      description: map['description'] as String?,
       url: map['url'] != null ? map['url'] as String : null,
-      urlToImage: map['urlToImage'] != null ? map['urlToImage'] as String : null,
+      urlToImage:
+          map['urlToImage'] != null ? map['urlToImage'] as String : null,
       publishedAt: map['publishedAt'] as String,
       content: map['content'] as String,
     );
@@ -72,50 +68,46 @@ class Articles {
 
   String toJson() => json.encode(toMap());
 
-  factory Articles.fromJson(String source) => Articles.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Articles.fromJson(String source) =>
+      Articles.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Articles(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
+    return 'Articles(source: $source,  title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
   }
 
   @override
   bool operator ==(covariant Articles other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.source == source &&
-      other.author == author &&
-      other.title == title &&
-      other.description == description &&
-      other.url == url &&
-      other.urlToImage == urlToImage &&
-      other.publishedAt == publishedAt &&
-      other.content == content;
+
+    return other.source == source &&
+        other.title == title &&
+        other.description == description &&
+        other.url == url &&
+        other.urlToImage == urlToImage &&
+        other.publishedAt == publishedAt &&
+        other.content == content;
   }
 
   @override
   int get hashCode {
     return source.hashCode ^
-      author.hashCode ^
-      title.hashCode ^
-      description.hashCode ^
-      url.hashCode ^
-      urlToImage.hashCode ^
-      publishedAt.hashCode ^
-      content.hashCode;
+        title.hashCode ^
+        description.hashCode ^
+        url.hashCode ^
+        urlToImage.hashCode ^
+        publishedAt.hashCode ^
+        content.hashCode;
   }
 }
 
 class Source {
- final String? id;
- final String? name;
+  final String? id;
+  final String? name;
   Source({
     this.id,
     this.name,
   });
-
- 
 
   Source copyWith({
     String? id,
@@ -143,7 +135,8 @@ class Source {
 
   String toJson() => json.encode(toMap());
 
-  factory Source.fromJson(String source) => Source.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Source.fromJson(String source) =>
+      Source.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Source(id: $id, name: $name)';
@@ -151,10 +144,8 @@ class Source {
   @override
   bool operator ==(covariant Source other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name;
+
+    return other.id == id && other.name == name;
   }
 
   @override
